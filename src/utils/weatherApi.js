@@ -28,7 +28,7 @@ async function getWeatherData({ latitude, longitude }) {
   const temperature = Math.round(data.main.temp);
 
   return {
-    city: fallbackWeather.city,
+    city: data.name,
     temperature,
     condition: getWeatherCondition(temperature),
   };

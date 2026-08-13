@@ -58,7 +58,11 @@ function Header({ weatherData, onAddClothes }) {
         >
           <div className="header__mobile-user">
             <p className="header__mobile-user-name">Gabriel Romero</p>
-            <img className="header__mobile-avatar" src={avatar} alt="" />
+            <img
+              className="header__mobile-avatar"
+              src={avatar}
+              alt="Gabriel Romero photo avatar"
+            />
           </div>
           <button
             className="header__mobile-add-clothes"

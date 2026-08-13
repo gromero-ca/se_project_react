@@ -122,9 +122,7 @@
   cursor: pointer;
 }
 
-.modal__submit:hover,
-.header__add-clothes:hover,
-.header__mobile-add-clothes:hover {
+.modal__submit:hover {
   opacity: 0.7;
 }
 

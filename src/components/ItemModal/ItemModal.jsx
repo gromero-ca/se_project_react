@@ -9,7 +9,7 @@ function ItemModal({ isOpen, onClose, selectedCard }) {
 
   return (
     <div
-      className={`modal item-modal ${isOpen ? "modal_is-opened" : ""}`}
+      className={`item-modal ${isOpen ? "item-modal_is-opened" : ""}`}
       onMouseDown={handleOverlayClick}
       aria-hidden={!isOpen}
       role="presentation"
@@ -17,7 +17,7 @@ function ItemModal({ isOpen, onClose, selectedCard }) {
       {selectedCard && (
         <div className="item-modal__content" role="dialog" aria-modal="true">
           <button
-            className="modal__close"
+            className="item-modal__close"
             type="button"
             aria-label="Close modal"
             onClick={onClose}
