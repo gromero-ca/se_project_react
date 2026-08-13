@@ -1,4 +1,4 @@
-import './Footer.css'
+import "./Footer.css";
 
 function Footer() {
   return (
@@ -6,7 +6,7 @@ function Footer() {
       <p className="footer__text">Developed by Gabriel Romero</p>
       <p className="footer__text">2026</p>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

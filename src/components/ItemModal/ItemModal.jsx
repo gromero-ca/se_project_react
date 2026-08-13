@@ -1,15 +1,15 @@
-import './ItemModal.css'
+import "./ItemModal.css";
 
 function ItemModal({ isOpen, onClose, selectedCard }) {
   function handleOverlayClick(event) {
     if (event.target === event.currentTarget) {
-      onClose()
+      onClose();
     }
   }
 
   return (
     <div
-      className={`modal item-modal ${isOpen ? 'modal_is-opened' : ''}`}
+      className={`modal item-modal ${isOpen ? "modal_is-opened" : ""}`}
       onMouseDown={handleOverlayClick}
       aria-hidden={!isOpen}
       role="presentation"
@@ -38,7 +38,7 @@ function ItemModal({ isOpen, onClose, selectedCard }) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default ItemModal
+export default ItemModal;

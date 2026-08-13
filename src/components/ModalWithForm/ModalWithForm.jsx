@@ -1,22 +1,15 @@
-import './ModalWithForm.css'
+import "./ModalWithForm.css";
 
-function ModalWithForm({
-  isOpen,
-  onClose,
-  title,
-  name,
-  buttonText,
-  children,
-}) {
+function ModalWithForm({ isOpen, onClose, title, name, buttonText, children }) {
   function handleOverlayClick(event) {
     if (event.target === event.currentTarget) {
-      onClose()
+      onClose();
     }
   }
 
   return (
     <div
-      className={`modal modal_type_${name} ${isOpen ? 'modal_is-opened' : ''}`}
+      className={`modal modal_type_${name} ${isOpen ? "modal_is-opened" : ""}`}
       onMouseDown={handleOverlayClick}
       aria-hidden={!isOpen}
       role="presentation"
@@ -43,7 +36,7 @@ function ModalWithForm({
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default ModalWithForm
+export default ModalWithForm;

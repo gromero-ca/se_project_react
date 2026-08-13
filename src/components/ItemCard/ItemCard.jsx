@@ -1,4 +1,4 @@
-import './ItemCard.css'
+import "./ItemCard.css";
 
 function ItemCard({ item, onClick }) {
   return (
@@ -20,7 +20,7 @@ function ItemCard({ item, onClick }) {
         ♡
       </button>
     </li>
-  )
+  );
 }
 
-export default ItemCard
+export default ItemCard;

@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import avatar from '../../assets/generic-avatar.png'
-import './Header.css'
+import { useState } from "react";
+import avatar from "../../assets/generic-avatar.png";
+import "./Header.css";
 
 function Header({ weatherData, onAddClothes }) {
-  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false)
-  const currentDate = new Date().toLocaleString('en-US', {
-    month: 'long',
-    day: 'numeric',
-  })
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+  const currentDate = new Date().toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+  });
 
   function toggleMobileMenu() {
-    setIsMobileMenuOpened((isOpened) => !isOpened)
+    setIsMobileMenuOpened((isOpened) => !isOpened);
   }
 
   function handleAddClothes() {
-    setIsMobileMenuOpened(false)
-    onAddClothes()
+    setIsMobileMenuOpened(false);
+    onAddClothes();
   }
 
   return (
@@ -28,7 +28,11 @@ function Header({ weatherData, onAddClothes }) {
           {currentDate}, {weatherData.city}
         </p>
         <div className="header__actions">
-          <button className="header__add-clothes" type="button" onClick={onAddClothes}>
+          <button
+            className="header__add-clothes"
+            type="button"
+            onClick={onAddClothes}
+          >
             + Add clothes
           </button>
           <p className="header__user-name">Gabriel Romero</p>
@@ -36,10 +40,10 @@ function Header({ weatherData, onAddClothes }) {
         </div>
         <button
           className={`header__menu-button ${
-            isMobileMenuOpened ? 'header__menu-button_opened' : ''
+            isMobileMenuOpened ? "header__menu-button_opened" : ""
           }`}
           type="button"
-          aria-label={isMobileMenuOpened ? 'Close menu' : 'Open menu'}
+          aria-label={isMobileMenuOpened ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpened}
           onClick={toggleMobileMenu}
         >
@@ -49,7 +53,7 @@ function Header({ weatherData, onAddClothes }) {
         </button>
         <div
           className={`header__mobile-menu ${
-            isMobileMenuOpened ? 'header__mobile-menu_opened' : ''
+            isMobileMenuOpened ? "header__mobile-menu_opened" : ""
           }`}
         >
           <div className="header__mobile-user">
@@ -69,7 +73,7 @@ function Header({ weatherData, onAddClothes }) {
         {currentDate}, {weatherData.city}
       </p>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

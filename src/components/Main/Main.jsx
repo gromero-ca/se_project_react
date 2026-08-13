@@ -1,11 +1,11 @@
-import './Main.css'
-import ItemCard from '../ItemCard/ItemCard'
-import WeatherCard from '../WeatherCard/WeatherCard'
+import "./Main.css";
+import ItemCard from "../ItemCard/ItemCard";
+import WeatherCard from "../WeatherCard/WeatherCard";
 
 function Main({ weatherData, clothingItems, onCardClick }) {
   const filteredItems = clothingItems.filter(
     (item) => item.weather.toLowerCase() === weatherData.condition,
-  )
+  );
 
   return (
     <main className="main">
@@ -21,7 +21,7 @@ function Main({ weatherData, clothingItems, onCardClick }) {
         </ul>
       </section>
     </main>
-  )
+  );
 }
 
-export default Main
+export default Main;

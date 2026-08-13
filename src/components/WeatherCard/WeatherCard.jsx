@@ -1,5 +1,5 @@
-import weatherMask from '../../assets/weather-banner.svg'
-import './WeatherCard.css'
+import weatherMask from "../../assets/weather-banner.svg";
+import "./WeatherCard.css";
 
 function WeatherCard({ temperature }) {
   return (
@@ -7,7 +7,7 @@ function WeatherCard({ temperature }) {
       <img className="weather-card__image" src={weatherMask} alt="" />
       <p className="weather-card__temperature">{temperature}°F</p>
     </section>
-  )
+  );
 }
 
-export default WeatherCard
+export default WeatherCard;
