@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useForm from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -9,16 +10,23 @@ const initialValues = {
 
 function AddItemModal({ isOpen, onAddItem, onClose }) {
   const { values, handleChange, resetForm } = useForm(initialValues);
+  const [formError, setFormError] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
+    setFormError("");
     onAddItem(values)
-      .then(resetForm)
-      .catch(() => {});
+      .then(() => resetForm())
+      .catch((error) => {
+        setFormError(
+          error.message || "Unable to add this garment. Please try again.",
+        );
+      });
   }
 
   function handleClose() {
     resetForm();
+    setFormError("");
     onClose();
   }
 
@@ -91,6 +99,11 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
           Cold
         </label>
       </fieldset>
+      {formError && (
+        <p className="modal-form__error" role="alert">
+          {formError}
+        </p>
+      )}
     </ModalWithForm>
   );
 }

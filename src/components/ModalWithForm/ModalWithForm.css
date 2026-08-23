@@ -111,6 +111,13 @@
   accent-color: #00a3ff;
 }
 
+.modal-form__error {
+  margin: 0 0 20px;
+  color: #c00;
+  font-size: 14px;
+  line-height: 18px;
+}
+
 .modal__submit {
   align-self: flex-start;
   min-width: 124px;

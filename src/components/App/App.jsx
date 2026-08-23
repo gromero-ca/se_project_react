@@ -19,6 +19,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardToDelete, setCardToDelete] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const hasLoadedWeather = useRef(false);
   const hasLoadedItems = useRef(false);
@@ -50,16 +51,23 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!activeModal) {
+      return undefined;
+    }
+
     function handleEscape(event) {
       if (event.key === "Escape") {
         setActiveModal("");
+        setSelectedCard(null);
+        setCardToDelete(null);
+        setDeleteError("");
       }
     }
 
     document.addEventListener("keydown", handleEscape);
 
     return () => document.removeEventListener("keydown", handleEscape);
-  }, []);
+  }, [activeModal]);
 
   function handleToggleSwitchChange() {
     setCurrentTemperatureUnit((unit) => (unit === "F" ? "C" : "F"));
@@ -76,6 +84,7 @@ function App() {
 
   function handleOpenDelete(card) {
     setCardToDelete(card);
+    setDeleteError("");
     setActiveModal("delete-confirmation");
   }
 
@@ -83,10 +92,12 @@ function App() {
     setActiveModal("");
     setSelectedCard(null);
     setCardToDelete(null);
+    setDeleteError("");
   }
 
   function handleCancelDelete() {
     setCardToDelete(null);
+    setDeleteError("");
     setActiveModal("item");
   }
 
@@ -115,7 +126,9 @@ function App() {
         handleCloseModal();
       })
       .catch((error) => {
-        throw error;
+        setDeleteError(
+          error.message || "Unable to delete this garment. Please try again.",
+        );
       });
   }
 
@@ -172,6 +185,7 @@ function App() {
             isOpen={activeModal === "delete-confirmation"}
             onClose={handleCancelDelete}
             onConfirm={handleConfirmDelete}
+            error={deleteError}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

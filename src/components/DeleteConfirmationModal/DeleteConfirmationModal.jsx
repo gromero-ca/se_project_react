@@ -1,6 +1,6 @@
 import "./DeleteConfirmationModal.css";
 
-function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
+function DeleteConfirmationModal({ isOpen, onClose, onConfirm, error }) {
   function handleOverlayClick(event) {
     if (event.target === event.currentTarget) {
       onClose();
@@ -36,6 +36,11 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
         >
           Delete this garment?
         </h2>
+        {error && (
+          <p className="delete-confirmation__error" role="alert">
+            {error}
+          </p>
+        )}
         <div className="delete-confirmation__actions">
           <button
             className="delete-confirmation__confirm"

@@ -1,3 +1,4 @@
+import { checkResponse } from "./api";
 import { apiKey, fallbackWeather } from "./constants";
 
 function getWeatherCondition(temperature) {
@@ -18,11 +19,7 @@ async function getWeatherData({ latitude, longitude }) {
   }
 
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`;
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("Weather request failed");
-  }
+  const response = await fetch(url).then(checkResponse);
 
   const data = await response.json();
   const fahrenheit = Math.round(data.main.temp);

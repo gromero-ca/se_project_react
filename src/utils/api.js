@@ -36,4 +36,4 @@ function deleteItem(id) {
   }).then(checkResponse);
 }
 
-export { addItem, deleteItem, getItems };
+export { addItem, checkResponse, deleteItem, getItems };
