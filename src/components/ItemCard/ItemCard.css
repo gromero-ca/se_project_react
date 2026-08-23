@@ -18,6 +18,10 @@
   cursor: pointer;
 }
 
+.item-card__image-button:hover {
+  opacity: 0.9;
+}
+
 .item-card__image {
   display: block;
   width: 100%;
@@ -55,6 +59,10 @@
   font-size: 22px;
   line-height: 28px;
   cursor: pointer;
+}
+
+.item-card__like:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 767px) {

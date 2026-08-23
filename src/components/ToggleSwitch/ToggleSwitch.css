@@ -1,0 +1,69 @@
+.toggle-switch {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.toggle-switch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.toggle-switch__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 2px solid #7e7e7e;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.toggle-switch__unit {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  color: rgb(0 0 0 / 50%);
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.toggle-switch__unit_fahrenheit {
+  color: #fff;
+}
+
+.toggle-switch__thumb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  border-radius: 20px;
+  background: #000;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch_celsius .toggle-switch__thumb {
+  transform: translateX(100%);
+}
+
+.toggle-switch_celsius .toggle-switch__unit_fahrenheit {
+  color: rgb(0 0 0 / 50%);
+}
+
+.toggle-switch_celsius .toggle-switch__unit_celsius {
+  color: #fff;
+}
+
+.toggle-switch:hover {
+  opacity: 0.8;
+}

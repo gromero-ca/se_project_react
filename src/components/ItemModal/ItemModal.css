@@ -41,6 +41,10 @@
   cursor: pointer;
 }
 
+.item-modal__close:hover {
+  opacity: 0.7;
+}
+
 .item-modal__image {
   display: block;
   width: 100%;
@@ -62,6 +66,22 @@
 
 .item-modal__weather {
   margin-top: 16px;
+}
+
+.item-modal__delete {
+  margin-top: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ff4d00;
+  font: inherit;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.item-modal__delete:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 767px) {

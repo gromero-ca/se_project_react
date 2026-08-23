@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "_id": "1",
+      "name": "T-Shirt",
+      "weather": "warm",
+      "imageUrl": "/images/clothing/clothing-t-shirt.png"
+    },
+    {
+      "_id": "2",
+      "name": "Shorts",
+      "weather": "warm",
+      "imageUrl": "/images/clothing/clothing-shorts.png"
+    },
+    {
+      "_id": "3",
+      "name": "Cap",
+      "weather": "warm",
+      "imageUrl": "/images/clothing/clothing-cap.png"
+    },
+    {
+      "_id": "4",
+      "name": "Sneakers",
+      "weather": "warm",
+      "imageUrl": "/images/clothing/clothing-sneakers.png"
+    }
+  ]
+}

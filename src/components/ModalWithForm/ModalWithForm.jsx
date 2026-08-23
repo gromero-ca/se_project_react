@@ -1,6 +1,14 @@
 import "./ModalWithForm.css";
 
-function ModalWithForm({ isOpen, onClose, title, name, buttonText, children }) {
+function ModalWithForm({
+  isOpen,
+  onClose,
+  onSubmit = () => {},
+  title,
+  name,
+  buttonText,
+  children,
+}) {
   function handleOverlayClick(event) {
     if (event.target === event.currentTarget) {
       onClose();
@@ -24,11 +32,7 @@ function ModalWithForm({ isOpen, onClose, title, name, buttonText, children }) {
           ×
         </button>
         <h2 className="modal__title">{title}</h2>
-        <form
-          className="modal__form"
-          name={name}
-          onSubmit={(event) => event.preventDefault()}
-        >
+        <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}
           <button className="modal__submit" type="submit">
             {buttonText}

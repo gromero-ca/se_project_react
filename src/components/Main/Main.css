@@ -35,7 +35,7 @@
   .clothing-section__title {
     font-size: 18px;
     line-height: 25px;
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .clothing-items {

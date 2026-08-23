@@ -1,0 +1,16 @@
+.profile {
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  gap: 40px;
+  margin-top: 48px;
+  border-top: 1px solid rgb(0 0 0 / 20%);
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    display: block;
+    margin-top: 2px;
+    padding-top: 20px;
+  }
+}

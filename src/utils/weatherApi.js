@@ -25,12 +25,16 @@ async function getWeatherData({ latitude, longitude }) {
   }
 
   const data = await response.json();
-  const temperature = Math.round(data.main.temp);
+  const fahrenheit = Math.round(data.main.temp);
+  const celsius = Math.round((fahrenheit - 32) * (5 / 9));
 
   return {
-    city: data.name,
-    temperature,
-    condition: getWeatherCondition(temperature),
+    city: data.name || fallbackWeather.city,
+    temperature: {
+      F: fahrenheit,
+      C: celsius,
+    },
+    condition: getWeatherCondition(fahrenheit),
   };
 }
 

@@ -7,7 +7,10 @@ const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY || "";
 
 const fallbackWeather = {
   city: "San Jacinto, California",
-  temperature: 75,
+  temperature: {
+    F: 75,
+    C: 24,
+  },
   condition: "warm",
 };
 

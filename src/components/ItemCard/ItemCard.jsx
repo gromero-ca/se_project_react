@@ -8,7 +8,7 @@ function ItemCard({ item, onClick }) {
         type="button"
         onClick={() => onClick(item)}
       >
-        <img className="item-card__image" src={item.link} alt={item.name} />
+        <img className="item-card__image" src={item.imageUrl} alt={item.name} />
         <span className="item-card__title">{item.name}</span>
       </button>
       <button

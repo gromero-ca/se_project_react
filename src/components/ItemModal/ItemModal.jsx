@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 
-function ItemModal({ isOpen, onClose, selectedCard }) {
+function ItemModal({ isOpen, onClose, onDelete, selectedCard }) {
   function handleOverlayClick(event) {
     if (event.target === event.currentTarget) {
       onClose();
@@ -26,7 +26,7 @@ function ItemModal({ isOpen, onClose, selectedCard }) {
           </button>
           <img
             className="item-modal__image"
-            src={selectedCard.link}
+            src={selectedCard.imageUrl}
             alt={selectedCard.name}
           />
           <div className="item-modal__details">
@@ -34,6 +34,13 @@ function ItemModal({ isOpen, onClose, selectedCard }) {
             <p className="item-modal__weather">
               Weather: {selectedCard.weather.toLowerCase()}
             </p>
+            <button
+              className="item-modal__delete"
+              type="button"
+              onClick={() => onDelete(selectedCard)}
+            >
+              Delete
+            </button>
           </div>
         </div>
       )}

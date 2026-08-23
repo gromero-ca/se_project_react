@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import avatar from "../../assets/generic-avatar.png";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
 function Header({ weatherData, onAddClothes }) {
@@ -21,9 +23,9 @@ function Header({ weatherData, onAddClothes }) {
   return (
     <header className="header">
       <div className="header__content">
-        <a className="header__logo" href="/" aria-label="WTWR home">
+        <Link className="header__logo" to="/" aria-label="WTWR home">
           wtwr°
-        </a>
+        </Link>
         <p className="header__date header__date_desktop">
           {currentDate}, {weatherData.city}
         </p>
@@ -35,8 +37,11 @@ function Header({ weatherData, onAddClothes }) {
           >
             + Add clothes
           </button>
-          <p className="header__user-name">Gabriel Romero</p>
-          <img className="header__avatar" src={avatar} alt="Gabriel Romero" />
+          <ToggleSwitch />
+          <Link className="header__profile-link" to="/profile">
+            <span className="header__user-name">Gabriel Romero</span>
+            <img className="header__avatar" src={avatar} alt="Gabriel Romero" />
+          </Link>
         </div>
         <button
           className={`header__menu-button ${
@@ -56,14 +61,18 @@ function Header({ weatherData, onAddClothes }) {
             isMobileMenuOpened ? "header__mobile-menu_opened" : ""
           }`}
         >
-          <div className="header__mobile-user">
-            <p className="header__mobile-user-name">Gabriel Romero</p>
+          <Link
+            className="header__mobile-user"
+            to="/profile"
+            onClick={() => setIsMobileMenuOpened(false)}
+          >
+            <span className="header__mobile-user-name">Gabriel Romero</span>
             <img
               className="header__mobile-avatar"
               src={avatar}
               alt="Gabriel Romero photo avatar"
             />
-          </div>
+          </Link>
           <button
             className="header__mobile-add-clothes"
             type="button"
@@ -71,6 +80,7 @@ function Header({ weatherData, onAddClothes }) {
           >
             + Add clothes
           </button>
+          <ToggleSwitch />
         </div>
       </div>
       <p className="header__date header__date_mobile">
