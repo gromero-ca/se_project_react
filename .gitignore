@@ -21,6 +21,8 @@ dist-ssr
 .idea
 .DS_Store
 .playwright-cli
+output/
+adrian/
 *.suo
 *.ntvs*
 *.njsproj
