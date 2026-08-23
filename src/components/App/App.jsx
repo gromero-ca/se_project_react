@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -23,6 +23,13 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const hasLoadedWeather = useRef(false);
   const hasLoadedItems = useRef(false);
+
+  const handleCloseModal = useCallback(() => {
+    setActiveModal("");
+    setSelectedCard(null);
+    setCardToDelete(null);
+    setDeleteError("");
+  }, []);
 
   useEffect(() => {
     if (hasLoadedWeather.current) {
@@ -57,17 +64,14 @@ function App() {
 
     function handleEscape(event) {
       if (event.key === "Escape") {
-        setActiveModal("");
-        setSelectedCard(null);
-        setCardToDelete(null);
-        setDeleteError("");
+        handleCloseModal();
       }
     }
 
     document.addEventListener("keydown", handleEscape);
 
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [activeModal]);
+  }, [activeModal, handleCloseModal]);
 
   function handleToggleSwitchChange() {
     setCurrentTemperatureUnit((unit) => (unit === "F" ? "C" : "F"));
@@ -88,13 +92,6 @@ function App() {
     setActiveModal("delete-confirmation");
   }
 
-  function handleCloseModal() {
-    setActiveModal("");
-    setSelectedCard(null);
-    setCardToDelete(null);
-    setDeleteError("");
-  }
-
   function handleCancelDelete() {
     setCardToDelete(null);
     setDeleteError("");
@@ -102,15 +99,11 @@ function App() {
   }
 
   function handleAddItem(item) {
-    return addItem(item)
-      .then((newItem) => {
-        setClothingItems((items) => [newItem, ...items]);
-        handleCloseModal();
-        return newItem;
-      })
-      .catch((error) => {
-        throw error;
-      });
+    return addItem(item).then((newItem) => {
+      setClothingItems((items) => [newItem, ...items]);
+      handleCloseModal();
+      return newItem;
+    });
   }
 
   function handleConfirmDelete() {

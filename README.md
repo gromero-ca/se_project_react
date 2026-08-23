@@ -43,7 +43,7 @@ To use live weather data, add an OpenWeather API key to `.env`:
 VITE_OPENWEATHER_API_KEY=your_api_key
 ```
 
-The app uses San Jacinto, California as its default location and shows fallback weather data when the key is missing or the request fails. The mock clothing API runs at `http://127.0.0.1:3001`.
+The app uses San Jacinto, California as its default location and shows fallback weather data when the key is missing or the request fails. The mock clothing API runs at `http://localhost:3001`.
 
 ## Project pitch video
 

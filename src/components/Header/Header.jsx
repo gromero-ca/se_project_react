@@ -30,6 +30,7 @@ function Header({ weatherData, onAddClothes }) {
           {currentDate}, {weatherData.city}
         </p>
         <div className="header__actions">
+          <ToggleSwitch />
           <button
             className="header__add-clothes"
             type="button"
@@ -37,7 +38,6 @@ function Header({ weatherData, onAddClothes }) {
           >
             + Add clothes
           </button>
-          <ToggleSwitch />
           <Link className="header__profile-link" to="/profile">
             <span className="header__user-name">Gabriel Romero</span>
             <img className="header__avatar" src={avatar} alt="Gabriel Romero" />
@@ -73,6 +73,7 @@ function Header({ weatherData, onAddClothes }) {
               alt="Gabriel Romero photo avatar"
             />
           </Link>
+          <ToggleSwitch />
           <button
             className="header__mobile-add-clothes"
             type="button"
@@ -80,7 +81,6 @@ function Header({ weatherData, onAddClothes }) {
           >
             + Add clothes
           </button>
-          <ToggleSwitch />
         </div>
       </div>
       <p className="header__date header__date_mobile">
