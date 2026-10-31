@@ -279,7 +279,6 @@ function App() {
               isOpen={activeModal === "edit-profile"}
               onClose={handleCloseModal}
               onUpdate={handleUpdateProfile}
-              currentUser={currentUser}
             />
             <AddItemModal
               isOpen={activeModal === "add-clothes"}
