@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { isItemOwnedBy } from "../../utils/itemIdentity";
 import "./ItemModal.css";
 
 function ItemModal({ isOpen, onClose, onDelete, selectedCard }) {
@@ -37,7 +38,7 @@ function ItemModal({ isOpen, onClose, onDelete, selectedCard }) {
             <p className="item-modal__weather">
               Weather: {selectedCard.weather.toLowerCase()}
             </p>
-            {currentUser && selectedCard.owner === currentUser._id && (
+            {isItemOwnedBy(selectedCard, currentUser?._id) && (
               <button
                 className="item-modal__delete"
                 type="button"

@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { isItemLikedBy } from "../../utils/itemIdentity";
 import "./ItemCard.css";
 
 function ItemCard({ item, onClick, onLike }) {
   const currentUser = useContext(CurrentUserContext);
-  const isLiked = item.likes?.includes(currentUser?._id);
+  const isLiked = isItemLikedBy(item, currentUser?._id);
   return (
     <li className="item-card">
       <button

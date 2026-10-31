@@ -25,6 +25,7 @@ import {
 } from "../../utils/api";
 import { coordinates, fallbackWeather } from "../../utils/constants";
 import { getWeatherData } from "../../utils/weatherApi";
+import { isItemLikedBy, isItemOwnedBy } from "../../utils/itemIdentity";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -146,7 +147,7 @@ function App() {
   }
 
   function handleCardLike(item) {
-    const isLiked = item.likes?.includes(currentUser?._id);
+    const isLiked = isItemLikedBy(item, currentUser?._id);
     const request = isLiked ? removeCardLike : addCardLike;
     request(item._id, localStorage.getItem("jwt"))
       .then((updated) =>
@@ -247,8 +248,8 @@ function App() {
                       isCheckingAuth={isCheckingAuth}
                     >
                       <Profile
-                        clothingItems={clothingItems.filter(
-                          (item) => item.owner === currentUser?._id,
+                        clothingItems={clothingItems.filter((item) =>
+                          isItemOwnedBy(item, currentUser?._id),
                         )}
                         onAddClothes={handleOpenAddClothes}
                         onCardClick={handleOpenCard}
