@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
 
-function ItemCard({ item, onClick }) {
+function ItemCard({ item, onClick, onLike }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isLiked = item.likes?.includes(currentUser?._id);
   return (
     <li className="item-card">
       <button
@@ -11,14 +15,17 @@ function ItemCard({ item, onClick }) {
         <img className="item-card__image" src={item.imageUrl} alt={item.name} />
         <span className="item-card__title">{item.name}</span>
       </button>
-      <button
-        className="item-card__like"
-        type="button"
-        aria-label={`Like ${item.name}`}
-        onClick={(event) => event.stopPropagation()}
-      >
-        ♡
-      </button>
+      {currentUser && (
+        <button
+          className="item-card__like"
+          type="button"
+          aria-label={`${isLiked ? "Unlike" : "Like"} ${item.name}`}
+          aria-pressed={Boolean(isLiked)}
+          onClick={() => onLike(item)}
+        >
+          {isLiked ? "♥" : "♡"}
+        </button>
+      )}
     </li>
   );
 }

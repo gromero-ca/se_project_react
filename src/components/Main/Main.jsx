@@ -4,15 +4,12 @@ import "./Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 
-function Main({ weatherData, clothingItems, onCardClick }) {
+function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temperature = weatherData.temperature[currentTemperatureUnit];
   const filteredItems = clothingItems.filter((item) => {
     const itemWeather = item.weather.toLowerCase();
-    return (
-      itemWeather === weatherData.condition ||
-      (weatherData.condition === "hot" && itemWeather === "warm")
-    );
+    return itemWeather === weatherData.condition;
   });
 
   return (
@@ -25,7 +22,12 @@ function Main({ weatherData, clothingItems, onCardClick }) {
         </h1>
         <ul className="clothing-items">
           {filteredItems.map((item) => (
-            <ItemCard key={item._id} item={item} onClick={onCardClick} />
+            <ItemCard
+              key={item._id}
+              item={item}
+              onClick={onCardClick}
+              onLike={onCardLike}
+            />
           ))}
         </ul>
       </section>

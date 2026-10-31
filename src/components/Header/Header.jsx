@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import avatar from "../../assets/generic-avatar.png";
+import Avatar from "../Avatar/Avatar";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
-function Header({ weatherData, onAddClothes }) {
+function Header({
+  weatherData,
+  onAddClothes,
+  isLoggedIn,
+  onLogin,
+  onRegister,
+}) {
+  const currentUser = useContext(CurrentUserContext);
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const currentDate = new Date().toLocaleString("en-US", {
     month: "long",
@@ -31,17 +39,38 @@ function Header({ weatherData, onAddClothes }) {
         </p>
         <div className="header__actions">
           <ToggleSwitch />
-          <button
-            className="header__add-clothes"
-            type="button"
-            onClick={onAddClothes}
-          >
-            + Add clothes
-          </button>
-          <Link className="header__profile-link" to="/profile">
-            <span className="header__user-name">Gabriel Romero</span>
-            <img className="header__avatar" src={avatar} alt="Gabriel Romero" />
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <button
+                className="header__add-clothes"
+                type="button"
+                onClick={onAddClothes}
+              >
+                + Add clothes
+              </button>
+              <Link className="header__profile-link" to="/profile">
+                <span className="header__user-name">{currentUser?.name}</span>
+                <Avatar className="header__avatar" user={currentUser} />
+              </Link>
+            </>
+          ) : (
+            <>
+              <button
+                className="header__add-clothes"
+                type="button"
+                onClick={onRegister}
+              >
+                Sign up
+              </button>
+              <button
+                className="header__add-clothes"
+                type="button"
+                onClick={onLogin}
+              >
+                Log in
+              </button>
+            </>
+          )}
         </div>
         <button
           className={`header__menu-button ${
@@ -61,26 +90,52 @@ function Header({ weatherData, onAddClothes }) {
             isMobileMenuOpened ? "header__mobile-menu_opened" : ""
           }`}
         >
-          <Link
-            className="header__mobile-user"
-            to="/profile"
-            onClick={() => setIsMobileMenuOpened(false)}
-          >
-            <span className="header__mobile-user-name">Gabriel Romero</span>
-            <img
-              className="header__mobile-avatar"
-              src={avatar}
-              alt="Gabriel Romero photo avatar"
-            />
-          </Link>
-          <ToggleSwitch />
-          <button
-            className="header__mobile-add-clothes"
-            type="button"
-            onClick={handleAddClothes}
-          >
-            + Add clothes
-          </button>
+          {isLoggedIn ? (
+            <>
+              <Link
+                className="header__mobile-user"
+                to="/profile"
+                onClick={() => setIsMobileMenuOpened(false)}
+              >
+                <span className="header__mobile-user-name">
+                  {currentUser?.name}
+                </span>
+                <Avatar className="header__mobile-avatar" user={currentUser} />
+              </Link>
+              <ToggleSwitch />
+              <button
+                className="header__mobile-add-clothes"
+                type="button"
+                onClick={handleAddClothes}
+              >
+                + Add clothes
+              </button>
+            </>
+          ) : (
+            <>
+              <ToggleSwitch />
+              <button
+                className="header__mobile-add-clothes"
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpened(false);
+                  onRegister();
+                }}
+              >
+                Sign up
+              </button>
+              <button
+                className="header__mobile-add-clothes"
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpened(false);
+                  onLogin();
+                }}
+              >
+                Log in
+              </button>
+            </>
+          )}
         </div>
       </div>
       <p className="header__date header__date_mobile">

@@ -13,7 +13,7 @@ WTWR is a responsive weather-based clothing recommendation app. It displays the 
 - React Router
 - React Context API
 - Custom `useForm` hook
-- json-server mock API
+- Express and MongoDB backend
 - OpenWeather API
 - Prettier for consistent code formatting
 
@@ -25,10 +25,10 @@ Install the dependencies:
 npm install
 ```
 
-Start the mock API:
+Start MongoDB and the [WTWR backend](https://github.com/gromero-ca/se_project_express) on port 3001. Follow its README for setup, then run:
 
 ```bash
-npm run server
+npm start
 ```
 
 In a second terminal, start the React application:
@@ -43,7 +43,7 @@ To use live weather data, add an OpenWeather API key to `.env`:
 VITE_OPENWEATHER_API_KEY=your_api_key
 ```
 
-The app uses San Jacinto, California as its default location and shows fallback weather data when the key is missing or the request fails. The mock clothing API runs at `http://localhost:3001`.
+The app uses San Jacinto, California as its default location and shows fallback weather data when the key is missing or the request fails. The Express API runs at `http://localhost:3001`. Sign up or log in to manage clothing items and your profile. Authentication persists using a JWT in local storage.
 
 ## Project pitch video
 
