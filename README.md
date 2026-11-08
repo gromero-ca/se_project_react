@@ -6,7 +6,7 @@ WTWR is a responsive weather-based clothing recommendation app. It displays the 
 
 ## Deployed app
 
-Visit [WTWR](https://35.209.135.208.sslip.io).
+Visit [WTWR](https://wtwr-gabriel.host2go.net).
 
 ## Technologies
 
