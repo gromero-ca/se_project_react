@@ -14,15 +14,15 @@ function getWeatherCondition(temperature) {
 }
 
 async function getWeatherData({ latitude, longitude }) {
-  if (!apiKey) {
-    return fallbackWeather;
-  }
-
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`;
+  const url = apiKey
+    ? `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`
+    : `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m&temperature_unit=fahrenheit`;
   const response = await fetch(url).then(checkResponse);
 
   const data = await response.json();
-  const fahrenheit = Math.round(data.main.temp);
+  const fahrenheit = Math.round(
+    apiKey ? data.main.temp : data.current.temperature_2m,
+  );
   const celsius = Math.round((fahrenheit - 32) * (5 / 9));
 
   return {

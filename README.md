@@ -4,6 +4,10 @@ WTWR is a responsive weather-based clothing recommendation app. It displays the 
 
 ![WTWR responsive app cover](public/images/wtwr-readme-cover.png)
 
+## Deployed app
+
+Visit [WTWR](https://35.209.135.208.sslip.io).
+
 ## Technologies
 
 - React
@@ -14,7 +18,7 @@ WTWR is a responsive weather-based clothing recommendation app. It displays the 
 - React Context API
 - Custom `useForm` hook
 - Express and MongoDB backend
-- OpenWeather API
+- OpenWeather and Open-Meteo weather APIs
 - Prettier for consistent code formatting
 
 ## Running locally
@@ -37,13 +41,23 @@ In a second terminal, start the React application:
 npm run dev
 ```
 
-To use live weather data, add an OpenWeather API key to `.env`:
+To use OpenWeather instead, add an OpenWeather API key to `.env`. Vite exposes this key to anyone who can access the frontend; use a restricted key and never use this option for a secret:
 
 ```bash
 VITE_OPENWEATHER_API_KEY=your_api_key
 ```
 
-The app uses San Jacinto, California as its default location and shows fallback weather data when the key is missing or the request fails. The Express API runs at `http://localhost:3001`. Sign up or log in to manage clothing items and your profile. Authentication persists using a JWT in local storage.
+The app uses San Jacinto, California as its default location. Without an OpenWeather key, it uses [Open-Meteo](https://open-meteo.com/) for current weather. It shows fallback weather data if the request fails. The Express API runs at `http://localhost:3001`. Sign up or log in to manage clothing items and your profile. Authentication persists using a JWT in local storage.
+
+## Production build
+
+Set `VITE_API_URL` to the deployed HTTPS API address when building for production:
+
+```bash
+VITE_API_URL=https://api.example.com npm run build
+```
+
+Without this setting, the app uses `http://localhost:3001` for local testing. Do not put secrets in `VITE_` variables because they are included in the browser bundle.
 
 ## Project pitch video
 
